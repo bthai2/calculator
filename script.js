@@ -32,15 +32,15 @@ function makeButton(name, onClickFunction){
 }
 
 function onAcClicked(){
-    
+    console.log('AC');
 }
 
 function onCClicked(){
-
+    console.log('C');
 }
 
 function onPercentClicked(){
-
+    console.log('%');
 }
 
 function onDivideClicked(){
@@ -48,27 +48,27 @@ function onDivideClicked(){
 }
 
 function onAddClicked(){
-
+    console.log('Add');
 }
 
 function onSubtractClicked(){
-
+    console.log('Subtract');
 }
 
 function onMultiplyClicked(){
-
+    console.log('X');
 }
 
 function onDecimalClicked(){
-
+    console.log('.');
 }
 
 function onEqualClicked(){
-
+    console.log('====');
 }
 
 function onNumberClicked(num){
-
+    console.log(num);
 }
 
 makeButton('AC', onAcClicked);
@@ -76,24 +76,24 @@ makeButton('C', onCClicked);
 makeButton('%', onPercentClicked);
 makeButton('/', onDivideClicked);
 
-makeButton('7', onNumberClicked(7));
-makeButton('8', onNumberClicked(8));
-makeButton('9', onNumberClicked(9));
-makeButton('+', onAddClicked());
+makeButton('7', () => {onNumberClicked(7)});
+makeButton('8', () => {onNumberClicked(8)});
+makeButton('9', () => {onNumberClicked(9)});
+makeButton('+', onAddClicked);
 
-makeButton('4', onNumberClicked(4));
-makeButton('5', onNumberClicked(5));
-makeButton('6', onNumberClicked(6));
-makeButton('-', onSubtractClicked());
+makeButton('4', () => {onNumberClicked(4)});
+makeButton('5', () => {onNumberClicked(5)});
+makeButton('6', () => {onNumberClicked(6)});
+makeButton('-', onSubtractClicked);
 
-makeButton('1', onNumberClicked(1));
-makeButton('2', onNumberClicked(2));
-makeButton('3', onNumberClicked(3));
-makeButton('x', onMultiplyClicked());
+makeButton('1', () => {onNumberClicked(1)});
+makeButton('2', () => {onNumberClicked(2)});
+makeButton('3', () => {onNumberClicked(3)});
+makeButton('x', onMultiplyClicked);
 
-makeButton('0', onNumberClicked(0));
-makeButton('.', onDecimalClicked());
-makeButton('=', onEqualClicked());
+makeButton('0', () => {onNumberClicked(0)});
+makeButton('.', onDecimalClicked);
+makeButton('=', onEqualClicked);
 
 for(let b of buttonArray){
     if (b.textContent == '/'){
