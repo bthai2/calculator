@@ -6,22 +6,36 @@ container.classList.add('container');
 let calculator = document.createElement('div');
 calculator.classList.add('calculator');
 
+let calcString = document.createElement('div');
+calcString.classList.add('calculation');
+
+let resString = document.createElement('div');
+resString.classList.add('result');
+
 let display = document.createElement('div');
 display.classList.add('display');
+
+display.appendChild(calcString);
+display.appendChild(resString);
 
 let buttons = document.createElement('div');
 buttons.classList.add('buttons');
 
 let buttonArray = [];
 
-var calculatedString = '';
-var fitString = '';
+var calculation = '';
+var displayString = '';
+var resultString = '';
 
 var num1, num2;
 
-function updateStrings(str){
-    calculatedString = str;
-    fitString = calculatedString.slice(calculatedString.length-12);
+function updateCalcStrings(str){
+    calculation = str;
+    displayString = calculation.slice(calculation.length-12);
+}
+
+function updateResult(){
+    resultString
 }
 
 function makeButton(name, onClickFunction){
@@ -96,13 +110,18 @@ makeButton('.', onDecimalClicked);
 makeButton('=', onEqualClicked);
 
 for(let b of buttonArray){
-    if (b.textContent == '/'){
-        b.textContent = '';
-        b.innerHTML = '&divide;';
-        b.style.fontSize = '34px';
-        b.addEventListener('click', onDivideClicked);
-    } else if(b.textContent == '='){
-        b.classList.add('eq');
+    if(isNaN(Number(b.textContent))) {
+        if(b.textContent == 'AC' || b.textContent == 'C'){ //AC or C
+            b.classList.add('clear');
+        } else if(b.textContent == '=') { // =
+            b.classList.add('eq');
+        } else if(b.textContent == '/') {
+            b.textContent = '';
+            b.innerHTML = '&divide;';
+            b.classList.add('division');
+        } else {//other operators
+            b.classList.add('operator');
+        }
     }
     buttons.appendChild(b);
 }

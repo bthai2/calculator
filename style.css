@@ -67,9 +67,36 @@ button, .eq {
     border-radius: 100%;
     height: 100px;
     width: 100px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.1);
 }
 
 .eq {
     width: 200px;
     border-radius: 2.5rem;
+    font-size: 42px;
+}
+
+.division {
+    font-size: 34px;
+}
+
+.eq:hover {
+    background-color: lightgreen;
+}
+
+.clear:hover {
+    background-color: lightcoral;
+}
+
+.operator:hover, .division:hover {
+    background-color: aquamarine;
+}
+
+.result {
+    font-size: 36px;
 }
