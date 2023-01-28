@@ -85,7 +85,14 @@ function onCClicked(){
 }
 
 function onPercentClicked(){
-    console.log('%');
+    if(isNaN(Number(calculation))){ //add decimal functionality later
+        alert('Error: must contain numbers only')
+    } else {
+        let num = Number(calculation);
+        resultString = '';
+        updateStrings('%', num/100);
+    }
+
 }
 
 function onEqualClicked(){
@@ -120,7 +127,7 @@ makeButton('3', () => {updateStrings('3', '');});
 makeButton('x', () => {updateStrings('x', '');});
 
 makeButton('0', () => {updateStrings('0', '');});
-makeButton('.', () => {updateStrings('+', '');});
+makeButton('.', () => {updateStrings('.', '');});
 makeButton('=', onEqualClicked);
 
 for(let b of buttonArray){
