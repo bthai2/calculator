@@ -31,13 +31,21 @@ var resultDisplayString = '';
 
 var num1, num2;
 
-var currOperator = '';
+// var currOperator = '';
 
 function updateStrings(str1, str2){
     calculation += str1;
-    calculationDisplayString = calculation.slice(calculation.length-12);
+    if(calculation.length > 12){
+        calculationDisplayString = calculation.slice(calculation.length-12);
+    } else {
+        calculationDisplayString = calculation;
+    }
     resultString += str2;
-    resultDisplayString = resultString.slice(resultString.length - 12);
+    if(resultDisplayString.length > 12){
+        resultDisplayString = resultString.slice(resultString.length - 12);
+    } else {
+        resultDisplayString = resultString;
+    }
 
     let display1 = document.querySelector('.calculation');
     let display2 = document.querySelector('.result');
@@ -58,11 +66,22 @@ function makeButton(name, onClickFunction){
 }
 
 function onAcClicked(){
-    console.log('AC');
+    //clear strings
+    calculation = '';
+    // calculationDisplayString = '';
+    resultString = '';
+    // resultDisplayString = '';
+    //update display
+    updateStrings('', '');
+    //clear variables
+    num1 = 0;
+    num2 = 0;
 }
 
 function onCClicked(){
-    console.log('C');
+    calculation = calculation.slice(0, -1);
+    resultString = resultString.slice(0, -1);
+    updateStrings('', ''); // this will update the display
 }
 
 function onPercentClicked(){
@@ -73,10 +92,6 @@ function onEqualClicked(){
     console.log('====');
 }
 
-function onOperatorClick(operator){
-
-}
-
 // function findOperator(str){
 //     let arr = operators
 //     .map(operator => str.indexOf(operator))
@@ -84,49 +99,28 @@ function onOperatorClick(operator){
 //     return arr[0];
 // }
 
-function onButtonClick(str) {
-    // if string already has operator replace it
-    if(operators.includes(str) && calculation.includes(str)){
-        //switch the operator with this new one
-        calculation.replace(currOperator, str);
-        currOperator = str;
-        updateStrings('', ''); // to update the short string
-                                // if it is too long
-    } else {
-        updateStrings(str, '');
-    }
-    // if(isNaN(Number(str)) && str !== '.'){
-    //     if(hasOperator(str)){
-    //         return;
-    //     }
-    // }
-    // updateStrings(str, '');
-    console.log(calculation);
-    console.log(resultString);
-}
-
 makeButton('AC', onAcClicked);
 makeButton('C', onCClicked);
 makeButton('%', onPercentClicked);
-makeButton('/', () => {onButtonClick('/')});
+makeButton('/', () => {updateStrings('/', '');});
 
-makeButton('7', () => {onButtonClick(7)});
-makeButton('8', () => {onButtonClick(8)});
-makeButton('9', () => {onButtonClick(9)});
-makeButton('+', () => {onButtonClick('+')});
+makeButton('7', () => {updateStrings('7', '');});
+makeButton('8', () => {updateStrings('8', '');});
+makeButton('9', () => {updateStrings('9', '');});
+makeButton('+', () => {updateStrings('+', '');});
 
-makeButton('4', () => {onButtonClick(4)});
-makeButton('5', () => {onButtonClick(5)});
-makeButton('6', () => {onButtonClick(6)});
-makeButton('-', () => {onButtonClick('-')});
+makeButton('4', () => {updateStrings('4', '');});
+makeButton('5', () => {updateStrings('5', '');});
+makeButton('6', () => {updateStrings('6', '');});
+makeButton('-', () => {updateStrings('-', '');});
 
-makeButton('1', () => {onButtonClick(1)});
-makeButton('2', () => {onButtonClick(2)});
-makeButton('3', () => {onButtonClick(3)});
-makeButton('x', () => {onButtonClick('x')});
+makeButton('1', () => {updateStrings('1', '');});
+makeButton('2', () => {updateStrings('2', '');});
+makeButton('3', () => {updateStrings('3', '');});
+makeButton('x', () => {updateStrings('x', '');});
 
-makeButton('0', () => {onButtonClick(0)});
-makeButton('.', () => {onButtonClick('.')});
+makeButton('0', () => {updateStrings('0', '');});
+makeButton('.', () => {updateStrings('+', '');});
 makeButton('=', onEqualClicked);
 
 for(let b of buttonArray){
