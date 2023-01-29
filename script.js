@@ -95,16 +95,42 @@ function onPercentClicked(){
 
 }
 
-function onEqualClicked(){
-    console.log('====');
+function calculate(idx, op){
+    console.log(calculation + ' ' + idx + ' ' + op);
+    num1 = Number(calculation.slice(0, idx));
+    num2 = Number(calculation.slice(idx+1));
+    // let result;
+    if(op == '+'){
+        updateStrings('', num1 + num2);
+    } else if(op == '-'){
+        updateStrings('', num1 - num2);
+    } else if(op == 'x'){
+        updateStrings('', num1 * num2);
+    } else if(op == '/'){
+        updateStrings('', num1 / num2);
+    }
+    console.log(num1);
+    console.log(num2);
 }
 
-// function findOperator(str){
-//     let arr = operators
-//     .map(operator => str.indexOf(operator))
-//     .filter(element => element >= 0);
-//     return arr[0];
-// }
+function onEqualClicked(){
+    //evaluate single expression
+    let arr = operators.filter(operator => calculation.includes(operator));
+    let ending = calculation.charAt(calculation.length - 1);
+    if(arr.length == 1 && !operators.includes(ending)){
+        let idx = findOperator(calculation);
+        calculate(idx, arr[0]);
+    } else if(arr.length != 0) {
+        alert('Calculator can currently handle single operations only');
+    }
+}
+
+function findOperator(str){
+    let arr = operators
+    .map(operator => str.indexOf(operator))
+    .filter(element => element >= 0);
+    return arr[0];
+}
 
 makeButton('AC', onAcClicked);
 makeButton('C', onCClicked);
