@@ -17,7 +17,7 @@ calcString.classList.add('calculation');
 let resString = document.createElement('div');
 resString.classList.add('result');
 
-// the display container for the strings aboe
+// the display container for the strings
 let display = document.createElement('div');
 display.classList.add('display');
 
